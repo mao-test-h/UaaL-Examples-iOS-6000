@@ -2,4 +2,7 @@
          noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style
         src="project://database/Assets/_Example/Runtime/View/ExampleView.uss?fileID=7433441132597879392&amp;guid=da49e2cea9fd541b89327b25f4e85b8c&amp;type=3#ExampleView" />
+    <ui:VisualElement name="slider-container" class="slider-container">
+        <ui:Slider name="intensity-slider" low-value="0" high-value="1" value="0.5" class="intensity-slider" />
+    </ui:VisualElement>
 </ui:UXML>
