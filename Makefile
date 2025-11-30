@@ -74,7 +74,8 @@ unity-build-simulator:
 
 # archive: ビルドした `.xcodeproj` から `.xcarchive` をビルド
 
-archive: archive-device archive-simulator
+archive:
+	@$(MAKE) -j2 archive-device archive-simulator
 	@echo "Archive completed: xcarchives created"
 
 archive-device:
