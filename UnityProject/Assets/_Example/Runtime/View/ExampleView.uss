@@ -24,3 +24,10 @@ VisualElement {}
     height: 8px;
     border-radius: 4px;
 }
+
+.version-label {
+    margin-top: 16px;
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.7);
+    -unity-text-align: middle-center;
+}

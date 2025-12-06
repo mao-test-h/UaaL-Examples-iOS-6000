@@ -11,6 +11,7 @@ namespace _Example
 
         private readonly INativeProxy _nativeProxy = NativeProxyFactory.Create();
         private Slider _intensitySlider;
+        private Label _versionLabel;
 
         private void Awake()
         {
@@ -21,6 +22,9 @@ namespace _Example
         {
             var root = uiDocument.rootVisualElement;
             _intensitySlider = root.Q<Slider>("intensity-slider");
+            _versionLabel = root.Q<Label>("version-label");
+
+            _versionLabel.text = $"Unity {Application.unityVersion}";
 
             _intensitySlider.SetValueWithoutNotify(rotationObj.intensity);
             _intensitySlider.RegisterValueChangedCallback(OnSliderValueChange);
