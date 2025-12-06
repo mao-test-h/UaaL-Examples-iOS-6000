@@ -8,7 +8,7 @@ UNITY_EDITOR_PATH := /Applications/Unity/Hub/Editor/6000.3.0f1/Unity.app/Content
 PROJECT_ROOT := $(shell pwd)
 UNITY_PROJECT_PATH := $(PROJECT_ROOT)/UnityProject
 UNITY_OUTPUT_PATH := $(UNITY_PROJECT_PATH)/Builds
-XCODE_PROJECT_PATH := $(PROJECT_ROOT)/XcodeProject/UaaLExample
+XCODE_PROJECT_PATH := $(PROJECT_ROOT)/XcodeProject/UaaLExample-UIKit
 
 # ビルド結果のパス
 DEVICE_BUILD_PATH := $(UNITY_OUTPUT_PATH)/DeviceSDK/Unity-iPhone.xcodeproj
