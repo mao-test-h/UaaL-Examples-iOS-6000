@@ -2,11 +2,11 @@ import SwiftUI
 
 struct MainView: View {
     @ObservedObject private var state: MainViewState
-
+    
     init(with state: MainViewState) {
         self.state = state
     }
-
+    
     var body: some View {
         GeometryReader { gr in
             VStack {
