@@ -2,7 +2,7 @@
 # 参考: https://qiita.com/tfactory/items/34f9d88f014c47221617
 
 # UnityEditorのパス
-UNITY_EDITOR_PATH := /Applications/Unity/Hub/Editor/6000.3.0b10/Unity.app/Contents/MacOS/Unity
+UNITY_EDITOR_PATH := /Applications/Unity/Hub/Editor/6000.3.0f1/Unity.app/Contents/MacOS/Unity
 
 # プロジェクトのパス
 PROJECT_ROOT := $(shell pwd)
