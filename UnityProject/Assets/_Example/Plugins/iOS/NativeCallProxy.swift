@@ -25,7 +25,7 @@ public final class FrameworkLibAPI {
 /// ネイティブからintensityの設定を適用する際に呼び出す関数ポインタ
 typealias OnChangeIntensityDelegate = @convention(c) (Float32) -> Void
 
-@_cdecl("UaaLExample_NativeProxy_Initialize")
+@_cdecl("UaaLExample_NativeProxy_NativeInitialize")
 func UaaLExample_NativeProxy_Initialize() {
     FrameworkLibAPI.api?.onInitialize()
     FrameworkLibAPI.isInitialized = true
