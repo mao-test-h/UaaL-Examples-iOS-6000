@@ -4,7 +4,6 @@ final class UnityBridge: NSObject {
     static let shared = UnityBridge()
     private let unityFramework: UnityFramework
     private var onInitializedHandler: (() -> Void)? = nil
-    private var isInitialized = false
     
     // NOTE: アプリ固有機能
     var intensityDelegate: IntensityDelegate? = nil
@@ -75,7 +74,7 @@ final class UnityBridge: NSObject {
             FrameworkLibAPI.registerAPIforNativeCalls(self)
             unityFramework.runEmbedded(withArgc: CommandLine.argc, argv: CommandLine.unsafeArgv, appLaunchOpts: launchOptions)
             
-            if isInitialized {
+            if FrameworkLibAPI.isInitialized {
                 self.onInitializedHandler?()
             }
         }
@@ -122,7 +121,6 @@ extension UnityBridge: NativeProxy {
     
     func onInitialize() {
         onInitializedHandler?()
-        isInitialized = true
     }
 }
 
