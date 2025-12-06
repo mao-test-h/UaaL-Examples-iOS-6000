@@ -20,13 +20,18 @@ namespace _Example.Editor
             var project = new PBXProject();
             project.ReadFromString(File.ReadAllText(projectPath));
 
+            SetUnityAsALibrary(project);
+
+            project.WriteToFile(projectPath);
+        }
+
+        private static void SetUnityAsALibrary(PBXProject project)
+        {
             // `Data`フォルダを[Build Phase -> Copy Bundle Resources]に追加
             var targetGuid = project.GetUnityFrameworkTargetGuid();
             var dataPathGuid = project.FindFileGuidByProjectPath("Data");
             var resPhaseGuid = project.GetResourcesBuildPhaseByTarget(targetGuid);
             project.AddFileToBuildSection(targetGuid, resPhaseGuid, dataPathGuid);
-
-            project.WriteToFile(projectPath);
         }
     }
 }
