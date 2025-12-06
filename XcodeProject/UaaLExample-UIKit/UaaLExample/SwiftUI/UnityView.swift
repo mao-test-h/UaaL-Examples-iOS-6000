@@ -11,7 +11,7 @@ struct UnityView: UIViewRepresentable {
         // → 故に今はCanvasPreviewを使うときには一時的にUaaLにコンパイルが含まれないようにする必要がありそう。。
 #if targetEnvironment(simulator)
         // SimulatorでUaaLを表示したい場合には前者を、CanvasPreviewで表示したい場合には後者を返すようにコードを書き換えて
-        let view = Unity.shared.view
+        let view = UnityBridge.shared.view
         //let view = UIView()
         if isCanvasPreview {
             // UaaLの表示領域を分かりやすくするためにダミーで色を塗ってるだけ
