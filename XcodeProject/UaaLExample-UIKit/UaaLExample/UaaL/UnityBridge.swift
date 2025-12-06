@@ -74,6 +74,7 @@ final class UnityBridge: NSObject {
             FrameworkLibAPI.registerAPIforNativeCalls(self)
             unityFramework.runEmbedded(withArgc: CommandLine.argc, argv: CommandLine.unsafeArgv, appLaunchOpts: launchOptions)
             
+            // NOTE: SplashScreen が非表示の場合には先に onInitializedHandler が発火されている可能性があるので、その場合には手動で呼び出す
             if FrameworkLibAPI.isInitialized {
                 self.onInitializedHandler?()
             }

@@ -7,6 +7,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        // UaaLの読み込みが終わるまでの間は一時的にダミーのViewControllerを表示
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        window.rootViewController = UIViewController()
+        window.makeKeyAndVisible()
+        self.window = window
+        
         // UaaLの初期化
         unity.application(application, didFinishLaunchingWithOptions: launchOptions) { [weak self] in
             // UaaLの読み込みが完了したら本来表示したいViewControllerに切り替える
@@ -15,11 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self?.window?.makeKeyAndVisible()
         }
         
-        // UaaLの読み込みが終わるまでの間は一時的にダミーのViewControllerを表示
-        let window = UIWindow(frame: UIScreen.main.bounds)
-        window.rootViewController = UIViewController()
-        window.makeKeyAndVisible()
-        self.window = window
         
         return true
     }
