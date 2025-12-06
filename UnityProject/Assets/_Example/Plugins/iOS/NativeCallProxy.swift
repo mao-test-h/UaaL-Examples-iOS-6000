@@ -16,7 +16,7 @@ public final class FrameworkLibAPI {
     
     // NOTE: Native から登録されるプロトコル
     public static func registerAPIforNativeCalls(_ proxy: NativeProxy) {
-        FrameworkLibAPI.api = api
+        FrameworkLibAPI.api = proxy
     }
 }
 
@@ -26,7 +26,7 @@ public final class FrameworkLibAPI {
 typealias OnChangeIntensityDelegate = @convention(c) (Float32) -> Void
 
 @_cdecl("UaaLExample_NativeProxy_NativeInitialize")
-func UaaLExample_NativeProxy_Initialize() {
+func UaaLExample_NativeProxy_NativeInitialize() {
     FrameworkLibAPI.api?.onInitialize()
     FrameworkLibAPI.isInitialized = true
 }
