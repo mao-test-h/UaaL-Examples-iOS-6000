@@ -11,8 +11,8 @@ public protocol NativeProxy {
 }
 
 public final class FrameworkLibAPI {
+    public static var isInitialized = false
     static var api: NativeProxy? = nil
-    static var isInitialized = false
     
     // NOTE: Native から登録されるプロトコル
     public static func registerAPIforNativeCalls(_ proxy: NativeProxy) {
