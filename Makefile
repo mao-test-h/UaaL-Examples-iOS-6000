@@ -17,7 +17,7 @@ DEVICE_ARCHIVE_PATH := $(UNITY_OUTPUT_PATH)/UnityFramework-Device.xcarchive
 SIMULATOR_ARCHIVE_PATH := $(UNITY_OUTPUT_PATH)/UnityFramework-Simulator.xcarchive
 XCFRAMEWORK_PATH := $(UNITY_OUTPUT_PATH)/UnityFramework.xcframework
 
-.PHONY: all clean \
+.PHONY: all archive-all xcframework-all clean \
         unity-build unity-build-device unity-build-simulator \
         archive archive-device archive-simulator \
         xcframework fix-swiftinterface cleanup-swiftinterface deploy \
@@ -27,6 +27,12 @@ XCFRAMEWORK_PATH := $(UNITY_OUTPUT_PATH)/UnityFramework.xcframework
 
 all: unity-build archive xcframework fix-swiftinterface cleanup-swiftinterface deploy
 	@echo "All steps completed successfully!"
+
+archive-all: archive xcframework fix-swiftinterface cleanup-swiftinterface deploy
+	@echo "archive-all steps completed successfully!"
+
+xcframework-all: xcframework fix-swiftinterface cleanup-swiftinterface deploy
+	@echo "xcframework-all steps completed successfully!"
 
 clean:
 	@echo "Cleaning build artifacts..."
