@@ -7,56 +7,39 @@
 
 **English** | [日本語](README-JP.md)
 
-### Overview
+## Overview
 
-Unity as a Library (UaaL) implementation example for iOS with **XCFramework support** and **Device/Simulator universal framework**.
+This is a verification project for generating and integrating XCFramework from `UnityFramework.framework` for device/simulator in Unity as a Library (UaaL) for iOS.
 
-This project demonstrates how to integrate Unity 6000.3 into native iOS apps (SwiftUI & UIKit) with Device/Simulator universal framework support and bidirectional communication between Unity and native code via P/Invoke.
+In the past, I prepared the following article and verification project for Intel Mac (x86-64), but this project includes **support for Unity 6.3** and **support for arm64-simulator**.
 
-Perfect for developers who want to embed Unity content in existing iOS applications.
+- [Unity as a LibraryをXCFramework化してiOSの実機とシミュレーターの両方で動かせるようにする](https://qiita.com/mao_/items/9874c1efa280ed4bb399) (Japanese)
+- https://github.com/mao-test-h/UaaL-Examples-iOS
 
-### Key Features
+> [!caution]
+> There may be issues with normal operation as workarounds are currently in place to run on 6000.0.3f1.
+> This will be updated once Unity addresses these issues.
 
-- ✅ **XCFramework Support**: Device & Simulator universal framework
-- ✅ **Automated Build**: One-command build pipeline with Makefile
-- ✅ **Dual UI Samples**: SwiftUI and UIKit integration patterns
-- ✅ **Bidirectional Communication**: Unity ↔ Native via P/Invoke
-- ✅ **UIToolkit**: Modern Unity UI implementation
-- ✅ **Comprehensive Docs**: Native plugin implementation patterns
+https://github.com/user-attachments/assets/94a63b90-4ffd-447c-a8f9-c2518b625cc1
 
-### Screenshots
+### Environment
 
-<!-- TODO: Add screenshots -->
-<!-- SwiftUI and UIKit sample app screenshots will be added here -->
+- Unity 6000.3.0f1+
+- Xcode 26.1.1+
 
-### Quick Start
+## Quick Start
 
-**Option 1: Run Pre-built Sample**
-
-```bash
-# Clone repository
-git clone https://github.com/mao-test-h/UaaL-Examples-iOS-6000.git
-cd UaaL-Examples-iOS-6000
-
-# Open Xcode project (pre-built XCFramework included)
-open XcodeProject/UaaLExample-SwiftUI/UaaLExample.xcodeproj
-
-# Run on simulator or device
-```
-
-**Option 2: Build from Unity**
+Running the following command will perform everything from Unity build to XCFramework generation and deployment.
+Once completed, open the Xcode project under `./XcodeProject` and run it.
 
 ```bash
-# Full build pipeline
 make all
-
-# Or step by step
-make unity-build   # Unity build for Device & Simulator
-make xcframework   # Generate XCFramework
-make deploy        # Deploy to Xcode projects
 ```
 
-### Project Structure
+## Project Structure
+
+>[!caution]
+> Please note that `./XcodeProject/UaaLExample-SwiftUI` is currently not working properly.
 
 ```
 .
@@ -78,19 +61,3 @@ make deploy        # Deploy to Xcode projects
 │
 └── Makefile                           # Automated build script
 ```
-
-### Documentation
-
-- **[Unity iOS Plugin Patterns](Documents/Unity-iOS-Plugin-Patterns.md)** - Comprehensive guide for implementing native plugins with P/Invoke
-- **[CLAUDE.md](CLAUDE.md)** - Project structure and development workflow
-
-### Requirements
-
-- macOS (Apple Silicon or Intel)
-- Unity 6000.3.0b10 or later
-- Xcode 26.1.1 or later
-- Command Line Tools for Xcode
-
-### License
-
-MIT License - See [LICENSE](LICENSE) for details
