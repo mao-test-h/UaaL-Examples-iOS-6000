@@ -9,54 +9,33 @@
 
 ## 概要
 
-iOS 向けの **Unity as a Library (UaaL)** 実装例です。**XCFramework 対応**と **Device/Simulator ユニバーサルフレームワーク**に対応しています。
+iOS 向けの Unity as a Library (UaaL) にて、実機 / シミュレーター向けの `UnityFramework.framework` から XCFramework を生成して組み込んでみるための検証プロジェクトです。
 
-本プロジェクトでは、Unity 6000.3 をネイティブ iOS アプリ (SwiftUI & UIKit) に組み込む方法、Device/Simulator 両対応のユニバーサルフレームワーク、P/Invoke を使った Unity とネイティブコード間の双方向通信を実証します。
+過去に Intel Mac (x86-64) 向けに以下の記事及び検証プロジェクトを用意しましたが、こちらのプロジェクトでは新たに **Unity 6.3 向けの対応** と **arm64-simulator でも動かせるようにした対応** を入れてます。
 
-既存の iOS アプリケーションに Unity コンテンツを埋め込みたい開発者に最適です。
-
-## 主な機能
-
-- ✅ **XCFramework 対応**: Device & Simulator 両対応のユニバーサルフレームワーク
-- ✅ **自動ビルド**: Makefile による1コマンドビルドパイプライン
-- ✅ **2種類の UI サンプル**: SwiftUI と UIKit の統合パターン
-- ✅ **双方向通信**: P/Invoke による Unity ↔ Native 間通信
-- ✅ **UIToolkit**: モダンな Unity UI 実装
-- ✅ **充実したドキュメント**: ネイティブプラグイン実装パターン
-
-## スクリーンショット
+- [Unity as a LibraryをXCFramework化してiOSの実機とシミュレーターの両方で動かせるようにする](https://qiita.com/mao_/items/9874c1efa280ed4bb399)
+- https://github.com/mao-test-h/UaaL-Examples-iOS
 
 <!-- TODO: スクリーンショットを追加 -->
-<!-- SwiftUI版とUIKit版のサンプルアプリのスクリーンショットをここに追加予定 -->
+
+### 動作環境
+
+- Unity 6000.3.0f1+
+- Xcode 26.1.1+
 
 ## クイックスタート
 
-**方法1: ビルド済みサンプルを実行**
+以下のコマンドを実行することで Unity のビルドから XCFramework の生成、配置まで一通り行えます。  
+完了したら `./XcodeProject` 以下にある Xcodeプロジェクトを開いて実行してください。
 
 ```bash
-# リポジトリをクローン
-git clone https://github.com/mao-test-h/UaaL-Examples-iOS-6000.git
-cd UaaL-Examples-iOS-6000
-
-# Xcode プロジェクトを開く (XCFramework は同梱済み)
-open XcodeProject/UaaLExample-SwiftUI/UaaLExample.xcodeproj
-
-# シミュレーターまたは実機で実行
-```
-
-**方法2: Unity からビルド**
-
-```bash
-# 完全なビルドパイプライン
 make all
-
-# または段階的に
-make unity-build   # Unity ビルド (Device & Simulator)
-make xcframework   # XCFramework 生成
-make deploy        # Xcode プロジェクトへデプロイ
 ```
 
 ## プロジェクト構造
+
+>[!caution]  
+> 現在 `./XcodeProject/UaaLExample-SwiftUI` は正常に動作しないので注意。
 
 ```
 .
@@ -78,19 +57,3 @@ make deploy        # Xcode プロジェクトへデプロイ
 │
 └── Makefile                           # 自動ビルドスクリプト
 ```
-
-## ドキュメント
-
-- **[Unity iOS プラグインパターン](Documents/Unity-iOS-Plugin-Patterns.md)** - P/Invoke を使ったネイティブプラグイン実装の包括的ガイド
-- **[CLAUDE.md](CLAUDE.md)** - プロジェクト構造と開発ワークフロー
-
-## 必要要件
-
-- macOS (Apple Silicon または Intel)
-- Unity 6000.3.0b10 以降
-- Xcode 26.1.1 以降
-- Command Line Tools for Xcode
-
-## ライセンス
-
-MIT License - 詳細は [LICENSE](LICENSE) を参照
