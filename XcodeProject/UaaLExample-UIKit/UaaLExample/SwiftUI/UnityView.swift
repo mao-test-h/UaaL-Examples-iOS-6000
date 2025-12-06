@@ -19,7 +19,7 @@ struct UnityView: UIViewRepresentable {
         }
         return view
 #else
-        return Unity.shared.view
+        return UnityBridge.shared.view
 #endif
     }
 

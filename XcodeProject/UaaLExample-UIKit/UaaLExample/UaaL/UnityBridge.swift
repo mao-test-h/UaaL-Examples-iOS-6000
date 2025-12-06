@@ -1,9 +1,10 @@
 import Foundation
 
-final class Unity: NSObject {
-    static let shared = Unity()
+final class UnityBridge: NSObject {
+    static let shared = UnityBridge()
     private let unityFramework: UnityFramework
-    private var onReadyHandler: (() -> Void)? = nil
+    private var onInitializedHandler: (() -> Void)? = nil
+    private var isInitialized = false
     
     // NOTE: アプリ固有機能
     var intensityDelegate: IntensityDelegate? = nil
@@ -14,7 +15,7 @@ final class Unity: NSObject {
     }
     
     override init() {
-        unityFramework = Unity.loadUnityFramework()
+        unityFramework = UnityBridge.loadUnityFramework()
         super.init()
     }
     
@@ -63,18 +64,20 @@ final class Unity: NSObject {
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?,
-        onReadyHandler: @escaping () -> Void) {
+        onInitializedHandler: @escaping () -> Void) {
             
-            FrameworkLibAPI.registerAPIforNativeCalls(self)
-            self.onReadyHandler = onReadyHandler
+            self.onInitializedHandler = onInitializedHandler
             
             // Set UnityFramework target for Unity-iPhone/Data folder to make Data part of a UnityFramework.framework and uncomment call to setDataBundleId
             // ODR is not supported in this case, ( if you need embedded and ODR you need to copy data )
             unityFramework.setDataBundleId("com.unity3d.framework")
             unityFramework.register(self)
+            FrameworkLibAPI.registerAPIforNativeCalls(self)
             unityFramework.runEmbedded(withArgc: CommandLine.argc, argv: CommandLine.unsafeArgv, appLaunchOpts: launchOptions)
             
-            //onReadyHandler()
+            if isInitialized {
+                self.onInitializedHandler?()
+            }
         }
     
     func applicationWillResignActive(_ application: UIApplication) {
@@ -98,7 +101,7 @@ final class Unity: NSObject {
     }
 }
 
-extension Unity: UnityFrameworkListener {
+extension UnityBridge: UnityFrameworkListener {
     func unityDidUnload(_ notification: Notification) {
     }
     
@@ -106,7 +109,7 @@ extension Unity: UnityFrameworkListener {
     }
 }
 
-extension Unity: NativeProxy {
+extension UnityBridge: NativeProxy {
     func onChangeIntensity(_ intensity: Float32) {
         intensityDelegate?.onChangeIntensityFromUnity(intensity)
     }
@@ -117,8 +120,9 @@ extension Unity: NativeProxy {
         }
     }
     
-    func onReady() {
-        onReadyHandler?()
+    func onInitialize() {
+        onInitializedHandler?()
+        isInitialized = true
     }
 }
 
@@ -130,7 +134,7 @@ protocol IntensityDelegate {
 }
 
 
-extension Unity {
+extension UnityBridge {
     /// intensityの設定 (Native -> Unity)
     func setIntensity(with intensity: Double) {
         onChangeIntensityDelegate?(intensity)

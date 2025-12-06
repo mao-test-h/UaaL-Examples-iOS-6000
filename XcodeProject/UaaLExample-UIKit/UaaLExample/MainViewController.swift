@@ -26,11 +26,11 @@ final class MainViewController: UIViewController {
         
         // Data binding.
         viewState.$intensity.sink { value in
-            Unity.shared.setIntensity(with: value)
+            UnityBridge.shared.setIntensity(with: value)
         }
         .store(in: &cancellableSet)
         
-        Unity.shared.intensityDelegate = viewState
+        UnityBridge.shared.intensityDelegate = viewState
     }
 }
 
