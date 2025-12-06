@@ -3,11 +3,11 @@ import Foundation
 final class UnityBridge: NSObject {
     static let shared = UnityBridge()
     private let unityFramework: UnityFramework
-    private var onReadyHandler: (() -> Void)? = nil
+    private var onInitializedHandler: (() -> Void)? = nil
     
     // NOTE: アプリ固有機能
-    var unityDelegate: UnityDelegate? = nil
-    private var onChangeIntensity: ((Double) -> Void)? = nil
+    var intensityDelegate: IntensityDelegate? = nil
+    private var onChangeIntensityDelegate: ((Double) -> Void)? = nil
     
     var view: UIView {
         unityFramework.appController().rootView!
@@ -63,9 +63,9 @@ final class UnityBridge: NSObject {
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?,
-        onReadyHandler: @escaping () -> Void) {
+        onInitializedHandler: @escaping () -> Void) {
             
-            self.onReadyHandler = onReadyHandler
+            self.onInitializedHandler = onInitializedHandler
             
             // Set UnityFramework target for Unity-iPhone/Data folder to make Data part of a UnityFramework.framework and uncomment call to setDataBundleId
             // ODR is not supported in this case, ( if you need embedded and ODR you need to copy data )
@@ -73,6 +73,11 @@ final class UnityBridge: NSObject {
             unityFramework.register(self)
             FrameworkLibAPI.registerAPIforNativeCalls(self)
             unityFramework.runEmbedded(withArgc: CommandLine.argc, argv: CommandLine.unsafeArgv, appLaunchOpts: launchOptions)
+            
+            // NOTE: SplashScreen が非表示の場合には先に onInitializedHandler が発火されている可能性があるので、その場合には手動で呼び出す
+            if FrameworkLibAPI.isInitialized {
+                self.onInitializedHandler?()
+            }
         }
     
     func applicationWillResignActive(_ application: UIApplication) {
@@ -103,36 +108,34 @@ extension UnityBridge: UnityFrameworkListener {
     func unityDidQuit(_ notification: Notification) {
     }
 }
-// MARK:- アプリ固有機能
-
-/// Unity からのイベントを受け取るためのデリゲート
-protocol UnityDelegate {
-    /// intensityの変更通知 [Unity -> Native]
-    func onChangeIntensity(_ intensity: Float32)
-}
-
-
-/// Swift から Unity に向けて呼び出すメソッド
-extension UnityBridge {
-    /// intensityの設定 (Native -> Unity)
-    func setIntensity(with intensity: Double) {
-        onChangeIntensity?(intensity)
-    }
-}
 
 extension UnityBridge: NativeProxy {
-    func onReady() {
-        onReadyHandler?()
-    }
-    
     func onChangeIntensity(_ intensity: Float32) {
-        unityDelegate?.onChangeIntensity(intensity)
+        intensityDelegate?.onChangeIntensityFromUnity(intensity)
     }
     
     func registerEvent(for onChangeIntensity: @escaping (Float32) -> Void) {
-        self.onChangeIntensity = { value in
+        onChangeIntensityDelegate = { value in
             onChangeIntensity(Float32(value))
         }
     }
+    
+    func onInitialize() {
+        onInitializedHandler?()
+    }
 }
 
+// MARK:- アプリ固有機能
+
+protocol IntensityDelegate {
+    /// intensityの変更通知 [Unity -> Native]
+    func onChangeIntensityFromUnity(_ intensity: Float32)
+}
+
+
+extension UnityBridge {
+    /// intensityの設定 (Native -> Unity)
+    func setIntensity(with intensity: Double) {
+        onChangeIntensityDelegate?(intensity)
+    }
+}
