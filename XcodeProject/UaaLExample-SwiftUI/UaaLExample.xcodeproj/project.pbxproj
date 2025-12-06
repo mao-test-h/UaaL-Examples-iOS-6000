@@ -7,18 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3493DB2E2EDC75AA001E59B1 /* UnityFramework.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3493DB2D2EDC75AA001E59B1 /* UnityFramework.xcframework */; };
-		3493DB2F2EDC75AA001E59B1 /* UnityFramework.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3493DB2D2EDC75AA001E59B1 /* UnityFramework.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		34A9CB852EE3E6F10043788E /* UnityFramework.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34A9CB842EE3E6F10043788E /* UnityFramework.xcframework */; };
+		34A9CB862EE3E6F10043788E /* UnityFramework.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 34A9CB842EE3E6F10043788E /* UnityFramework.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		3493DB302EDC75AA001E59B1 /* Embed Frameworks */ = {
+		34A9CB872EE3E6F10043788E /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3493DB2F2EDC75AA001E59B1 /* UnityFramework.xcframework in Embed Frameworks */,
+				34A9CB862EE3E6F10043788E /* UnityFramework.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -28,6 +28,7 @@
 /* Begin PBXFileReference section */
 		3493DB122EDC6484001E59B1 /* UaaLExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UaaLExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3493DB2D2EDC75AA001E59B1 /* UnityFramework.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = UnityFramework.xcframework; sourceTree = "<group>"; };
+		34A9CB842EE3E6F10043788E /* UnityFramework.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = UnityFramework.xcframework; path = ../UnityFramework.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -43,7 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3493DB2E2EDC75AA001E59B1 /* UnityFramework.xcframework in Frameworks */,
+				34A9CB852EE3E6F10043788E /* UnityFramework.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +71,7 @@
 		3493DB2C2EDC75A9001E59B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				34A9CB842EE3E6F10043788E /* UnityFramework.xcframework */,
 				3493DB2D2EDC75AA001E59B1 /* UnityFramework.xcframework */,
 			);
 			name = Frameworks;
@@ -85,7 +87,7 @@
 				3493DB0E2EDC6484001E59B1 /* Sources */,
 				3493DB0F2EDC6484001E59B1 /* Frameworks */,
 				3493DB102EDC6484001E59B1 /* Resources */,
-				3493DB302EDC75AA001E59B1 /* Embed Frameworks */,
+				34A9CB872EE3E6F10043788E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
