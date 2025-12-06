@@ -54,7 +54,7 @@ namespace _Example.Editor
             const string metalDisplayLinkReplacement =
                 "        // We get GPU Timeout errors when enabling the CAMetalDisplayLink.\n" +
                 "        // Therefore it is disabled until a fix is found.\n" +
-                "        return YES;";
+                "        return YES;    // [Workaround] Original: return NO; -> Modified: return YES;";
 
             var unityAppControllerPath = Path.Combine(buildPath, "Classes", "UnityAppController.mm");
             Assert.IsTrue(File.Exists(unityAppControllerPath), $"[XcodePostProcess] UnityAppController.mm が見つかりません: {unityAppControllerPath}");
