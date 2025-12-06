@@ -1,0 +1,26 @@
+VisualElement {}
+
+.slider-container {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    translate: -50% 0;
+    width: 80%;
+    padding: 16px;
+}
+
+.intensity-slider {
+    width: 100%;
+    height: 40px;
+}
+
+.intensity-slider #unity-dragger {
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+}
+
+.intensity-slider #unity-tracker {
+    height: 8px;
+    border-radius: 4px;
+}

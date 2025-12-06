@@ -23,7 +23,10 @@ namespace _Example.NativeProxy
         {
         }
 
-        public void Ready() => NativeReady();
+        public void Initialize()
+        {
+            NativeInitialize();
+        }
 
         public void SetIntensity(float intensity) => NativeSetIntensity(intensity);
 
@@ -32,8 +35,8 @@ namespace _Example.NativeProxy
             NativeRegisterDelegate(CallChangeIntensity);
         }
 
-        [DllImport("__Internal", EntryPoint = "UaaLExample_NativeProxy_NativeReady")]
-        private static extern void NativeReady();
+        [DllImport("__Internal", EntryPoint = "UaaLExample_NativeProxy_NativeInitialize")]
+        private static extern void NativeInitialize();
 
         [DllImport("__Internal", EntryPoint = "UaaLExample_NativeProxy_NativeSetIntensity")]
         private static extern void NativeSetIntensity(float intensity);

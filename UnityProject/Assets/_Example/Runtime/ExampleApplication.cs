@@ -1,36 +1,41 @@
 using _Example.NativeProxy;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 namespace _Example
 {
     internal sealed class ExampleApplication : MonoBehaviour
     {
+        [SerializeField] private UIDocument uiDocument;
         [SerializeField] private Rotation rotationObj;
-        [SerializeField] private Slider intensitySlider;
 
         private readonly INativeProxy _nativeProxy = NativeProxyFactory.Create();
+        private Slider _intensitySlider;
 
         private void Awake()
         {
-            _nativeProxy.Ready();
+            _nativeProxy.Initialize();
         }
 
         private void Start()
         {
-            //intensitySlider.SetValueWithoutNotify(rotationObj.intensity);
-            //intensitySlider.onValueChanged.AddListener(OnSliderValueChange);
+            var root = uiDocument.rootVisualElement;
+            _intensitySlider = root.Q<Slider>("intensity-slider");
+
+            _intensitySlider.SetValueWithoutNotify(rotationObj.intensity);
+            _intensitySlider.RegisterValueChangedCallback(OnSliderValueChange);
+
             _nativeProxy.OnChangeIntensity += intensity =>
             {
-                intensitySlider.SetValueWithoutNotify(intensity);
+                _intensitySlider.SetValueWithoutNotify(intensity);
                 rotationObj.intensity = intensity;
             };
         }
 
-        private void OnSliderValueChange(float intensity)
+        private void OnSliderValueChange(ChangeEvent<float> evt)
         {
-            _nativeProxy.SetIntensity(intensity);
-            rotationObj.intensity = intensity;
+            _nativeProxy.SetIntensity(evt.newValue);
+            rotationObj.intensity = evt.newValue;
         }
     }
 }
