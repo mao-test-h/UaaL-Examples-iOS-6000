@@ -3,7 +3,7 @@ import Foundation
 /// Unity との呼び出し規約
 public protocol NativeProxy {
     /// [Unity -> Native] UnityEngine のセットアップ完了イベント
-    func onReady()
+    func onInitialize()
     /// [Unity -> Native] Unity から Intensity が変更された際のイベント
     func onChangeIntensity(_ intensity: Float32)
     /// [Native -> Unity] ネイティブ側から Intensity を変更した際のイベントを登録
@@ -12,6 +12,9 @@ public protocol NativeProxy {
 
 public final class FrameworkLibAPI {
     static var api: NativeProxy? = nil
+    static var isInitialized = false
+    
+    // NOTE: Native から登録されるプロトコル
     public static func registerAPIforNativeCalls(_ proxy: NativeProxy) {
         FrameworkLibAPI.api = api
     }
@@ -22,9 +25,10 @@ public final class FrameworkLibAPI {
 /// ネイティブからintensityの設定を適用する際に呼び出す関数ポインタ
 typealias OnChangeIntensityDelegate = @convention(c) (Float32) -> Void
 
-@_cdecl("UaaLExample_NativeProxy_NativeReady")
-func UaaLExample_NativeProxy_NativeReady() {
-    FrameworkLibAPI.api?.onReady()
+@_cdecl("UaaLExample_NativeProxy_Initialize")
+func UaaLExample_NativeProxy_Initialize() {
+    FrameworkLibAPI.api?.onInitialize()
+    FrameworkLibAPI.isInitialized = true
 }
 
 @_cdecl("UaaLExample_NativeProxy_NativeSetIntensity")

@@ -14,7 +14,7 @@ namespace _Example
 
         private void Awake()
         {
-            _nativeProxy.Ready();
+            _nativeProxy.Initialize();
         }
 
         private void Start()

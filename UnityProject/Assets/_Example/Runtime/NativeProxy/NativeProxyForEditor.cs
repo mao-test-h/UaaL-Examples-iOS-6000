@@ -7,9 +7,9 @@ namespace _Example.NativeProxy
     {
         public event Action<float> OnChangeIntensity = null;
 
-        public void Ready()
+        public void Initialize()
         {
-            Debug.Log("NativeProxyForEditor Ready");
+            Debug.Log("NativeProxyForEditor Initialize");
         }
 
         public void SetIntensity(float intensity)
