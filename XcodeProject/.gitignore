@@ -62,4 +62,4 @@ fastlane/screenshots/**/*.png
 fastlane/test_output
 
 # UaaL
-UnityFramework.xcframework
+UnityFramework*.xcframework
