@@ -9,7 +9,7 @@
 
 ## 概要
 
-iOS 向けの Unity as a Library (UaaL) にて、実機 / シミュレーター向けの `UnityFramework.framework` から XCFramework を生成して組み込んでみるための検証プロジェクトです。
+iOS 向けの Unity as a Library (UaaL) にて、実機 / シミュレーター向けの `UnityFramework.framework` から XCFramework を生成して組み込むための検証プロジェクトです。
 
 過去に Intel Mac (x86-64) 向けに以下の記事及び検証プロジェクトを用意しましたが、こちらのプロジェクトでは新たに **Unity 6.3 向けの対応** と **arm64-simulator でも動かせるようにした対応** を入れてます。
 
