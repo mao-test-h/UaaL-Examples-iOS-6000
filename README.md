@@ -16,8 +16,8 @@ In the past, I prepared the following article and verification project for Intel
 - [Unity as a LibraryをXCFramework化してiOSの実機とシミュレーターの両方で動かせるようにする](https://qiita.com/mao_/items/9874c1efa280ed4bb399) (Japanese)
 - https://github.com/mao-test-h/UaaL-Examples-iOS
 
-> [!caution]
-> There may be issues with normal operation as workarounds are currently in place to run on 6000.0.3f1.
+> [!warning]
+> As a known issue, enabling `Show Splash Screen` when integrating as UaaL may cause it to not work properly.
 > This will be updated once Unity addresses these issues.
 
 https://github.com/user-attachments/assets/94a63b90-4ffd-447c-a8f9-c2518b625cc1
