@@ -7,11 +7,15 @@
 
 **English** | [日本語](README-JP.md)
 
+> [!tip]
+> I wrote an article about this sample project (in Japanese).
+> - [【Unity6.3対応版】Unity as a Library で UnityFramework を XCFramework 化して iOS 実機とシミュレーターの両方で動かせるようにする](https://qiita.com/mao_/items/4da81d6b57ea1a0fe382)
+
 ## Overview
 
-This is a verification project for generating and integrating XCFramework from `UnityFramework.framework` for device/simulator in Unity as a Library (UaaL) for iOS.
+This is a sample project for generating and integrating XCFramework from `UnityFramework.framework` for device/simulator in Unity as a Library (UaaL) for iOS.
 
-In the past, I prepared the following article and verification project for Intel Mac (x86-64), but this project includes **support for Unity 6.3** and **support for arm64-simulator**.
+In the past, I prepared the following article and sample project for Intel Mac (x86-64), but this project includes **support for Unity 6.3** and **support for arm64-simulator**.
 
 - [Unity as a LibraryをXCFramework化してiOSの実機とシミュレーターの両方で動かせるようにする](https://qiita.com/mao_/items/9874c1efa280ed4bb399) (Japanese)
 - https://github.com/mao-test-h/UaaL-Examples-iOS
